@@ -31,13 +31,13 @@ jobs:
       - name: jar 파일명 변경하기
         run: mv ./build/libs/*SNAPSHOT.jar ./app.jar
 
-#      - name: EC2 로 jar 파일 전송하기
-#        uses: appleboy/scp-action@v0.1.7
-#        with:
-#          host: ${{ secrets.EC2.HOST }}
-#          username: ${{ secrets.EC2.USERNAME }}
-#          password: ${{ secrets.EC2.PASSWORD }}
-#          port: ${{ secrets.EC2.PORT }}
-#          source: "tests/a.txt,tests/b.txt"
-#          target: your_server_target_folder_path
+      - name: EC2 로 jar 파일 전송하기
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          password: ${{ secrets.EC2_PRIVATEKEY }}
+          port: ${{ secrets.EC2_PORT }}
+          source: "tests/a.txt,tests/b.txt"
+          target: your_server_target_folder_path
       #- name: SSH 로 EC2에 접속하기(프로세스 실행)
