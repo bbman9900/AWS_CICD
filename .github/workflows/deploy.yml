@@ -38,6 +38,6 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           password: ${{ secrets.EC2_PRIVATEKEY }}
           port: ${{ secrets.EC2_PORT }}
-          source: "tests/a.txt,tests/b.txt"
-          target: your_server_target_folder_path
+          source: ./app.jar
+          target: /home/ubuntu/project/tob
       #- name: SSH 로 EC2에 접속하기(프로세스 실행)
