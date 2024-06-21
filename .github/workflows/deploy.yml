@@ -50,7 +50,7 @@ jobs:
           port: ${{ secrets.EC2_PORT }}
           script_stop: true
           script: |
-            rm -rf /home/ubuntu/project/cur
+            rm -rf /home/ubuntu/project/cur || true
             mkdir /home/ubuntu/project/cur
             mv /home/ubuntu/project/tobe/app.jar /home/ubuntu/project/cur/app.jar
             cd /home/ubuntu/project/cur
