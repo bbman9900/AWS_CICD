@@ -20,7 +20,7 @@ jobs:
           java-version: '17'
 
       - name: apllication.yml 생성
-        run: echo ${{ secrets.APPLICATION_YML }} > ./src/main/resources/application.yml
+        run: echo ${{ secrets.APPLICATION_YML }} > base64 --decode ./src/main/resources/application.yml
 
       - name: 테스트 및 빌드하기
         run: |
@@ -33,25 +33,25 @@ jobs:
       - name: SSH 로 EC2 에 접속하기(프로세스 실행)
 
 
-#jobs:
-#  My-First-CICD-Job:
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - name: simple-action-test
-#        run: echo "This is the first cicd step"
-#
-#      - name: multiple-commands
-#        run: |
-#          echo "mult - 1"
-#          echo "mult - 2"
-#
-#      - name: Github 변수 사용하기
-#        run: |
-#          echo $GITHUB_SHA
-#          echo $GITHUB_REPOSITORY
-#
-#      - name: Secret 변수 사용하기
-#        run: |
-#          echo ${{ secrets.USERID }}
-#          echo ${{ secrets.PASSWORD }}
+jobs:
+  My-First-CICD-Job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: simple-action-test
+        run: echo "This is the first cicd step"
+
+      - name: multiple-commands
+        run: |
+          echo "mult - 1"
+          echo "mult - 2"
+
+      - name: Github 변수 사용하기
+        run: |
+          echo $GITHUB_SHA
+          echo $GITHUB_REPOSITORY
+
+      - name: Secret 변수 사용하기
+        run: |
+          echo ${{ secrets.USERID }}
+          echo ${{ secrets.PASSWORD }}
