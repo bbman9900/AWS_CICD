@@ -1,0 +1,57 @@
+name: Github Actions 실행하기
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Manual-deployment-Job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Github repository 소스 가져오기
+        uses: actions/checkout@v4
+
+      - name: JDK 17 설치하기
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: apllication.yml 생성
+        run: echo ${{ secrets.APPLICATION_YML }} > ./src/main/resources/application.yml
+
+      - name: 테스트 및 빌드하기
+        run: |
+          chmod +x ./gradlew
+          ,/gradlew clean build
+
+      - name: jar 파일명 변경하기
+        run: mv ./build/libs/*SNAPSHOT.jar
+      - name: EC2 로 jar 파일 전송하기
+      - name: SSH 로 EC2 에 접속하기(프로세스 실행)
+
+
+#jobs:
+#  My-First-CICD-Job:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: simple-action-test
+#        run: echo "This is the first cicd step"
+#
+#      - name: multiple-commands
+#        run: |
+#          echo "mult - 1"
+#          echo "mult - 2"
+#
+#      - name: Github 변수 사용하기
+#        run: |
+#          echo $GITHUB_SHA
+#          echo $GITHUB_REPOSITORY
+#
+#      - name: Secret 변수 사용하기
+#        run: |
+#          echo ${{ secrets.USERID }}
+#          echo ${{ secrets.PASSWORD }}
