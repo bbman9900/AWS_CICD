@@ -37,6 +37,7 @@ jobs:
 #          host: ${{ secrets.EC2.HOST }}
 #          username: ${{ secrets.EC2.USERNAME }}
 #          password: ${{ secrets.EC2.PASSWORD }}
+#          port: ${{ secrets.EC2.PORT }}
 #          source: "tests/a.txt,tests/b.txt"
 #          target: your_server_target_folder_path
       #- name: SSH 로 EC2에 접속하기(프로세스 실행)
